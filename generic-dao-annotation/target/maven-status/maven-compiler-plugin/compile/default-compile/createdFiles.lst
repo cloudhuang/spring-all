@@ -1,0 +1,7 @@
+org\spring\generic\dao\GenericDao.class
+org\spring\generic\dao\annonation\DataAccess.class
+org\spring\generic\entity\Account.class
+org\spring\generic\CustomAnnotationConfiguration.class
+org\spring\generic\dao\annonation\processor\DataAccessAnnotationProcessor.class
+org\spring\generic\entity\Person.class
+org\spring\generic\dao\annonation\processor\DataAccessFieldCallback.class

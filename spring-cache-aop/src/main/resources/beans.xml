@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+    <aop:aspectj-autoproxy/>
+
+    <bean id="methodCacheInterceptor" class="io.cloudhuang.MethodCacheInterceptor">
+        <property name="defaultCache" ref="defaultCache"/>
+    </bean>
+
+    <bean id="defaultCache" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
+        <property name="cacheManager" ref="cacheManager"/>
+        <property name="diskPersistent" value="false"/>
+        <property name="cacheName" value="io.cloudhuang.Cachable"/>
+        <property name="maxElementsInMemory" value="1000"/>
+        <property name="overflowToDisk" value="false"/>
+        <property name="eternal" value="false"/>
+        <property name="timeToLive" value="300"/>
+        <property name="timeToIdle" value="300"/>
+    </bean>
+
+    <bean id="listCache" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
+        <property name="cacheManager" ref="cacheManager"/>
+        <property name="diskPersistent" value="false"/>
+        <property name="cacheName" value="io.cloudhuang.ListCache"/>
+        <property name="maxElementsInMemory" value="1000"/>
+        <property name="overflowToDisk" value="false"/>
+        <property name="eternal" value="false"/>
+        <property name="timeToLive" value="300"/>
+        <property name="timeToIdle" value="300"/>
+    </bean>
+
+    <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean" scope="singleton"/>
+</beans>
